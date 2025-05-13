@@ -19,13 +19,15 @@ Antes de iniciar, você precisa ter os seguintes softwares instalados:
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/todo-api-prisma.git
-cd todo-api-prisma
+git clone https://github.com/seu-usuario/todo-list-api.git
+cd todo-list-api
 ```
 
 ### 2. Instale as dependências
 
+```bash
 npm install
+```
 
 ### 3. Configurações do projeto
 
