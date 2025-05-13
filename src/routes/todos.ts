@@ -22,6 +22,20 @@ router.post("/", async (req, res) => {
   res.status(201).json(todo);
 });
 
+// Listar um todo
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const todo = await prisma.todo.findUnique({
+      where: { id: Number(id) },
+    });
+    res.json(todo);
+  } catch (err) {
+    res.status(404).json({ error: "Todo não encontrado." });
+  }
+});
+
 // Atualizar um todo
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
