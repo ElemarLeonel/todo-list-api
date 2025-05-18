@@ -22,6 +22,19 @@ router.post("/", async (req, res) => {
   res.status(201).json(todo);
 });
 
+// Listar todos os todos completados
+router.get("/completed", async (_req, res) => {
+  try {
+    const todos = await prisma.todo.findMany({
+      where: { completed: true },
+    });
+
+    res.json(todos);
+  } catch (err) {
+    res.status(404).json({ error: "Todos não encontrado." });
+  }
+});
+
 // Listar um todo
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
@@ -33,19 +46,6 @@ router.get("/:id", async (req, res) => {
     res.json(todo);
   } catch (err) {
     res.status(404).json({ error: "Todo não encontrado." });
-  }
-});
-
-// Listar todos os todos completados
-router.get("/completed", async (req, res) => {
-  try {
-    const todos = await prisma.todo.findMany({
-      where: { completed: true },
-    });
-
-    res.json(todos);
-  } catch (err) {
-    res.status(404).json({ error: "Todos não encontrado." });
   }
 });
 
