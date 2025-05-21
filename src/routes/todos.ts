@@ -7,7 +7,7 @@ const router = Router();
 // Listar todos os todos
 router.get("/", async (_req, res) => {
   const todos = await prisma.todo.findMany();
-  res.json(todos);
+  await res.json(todos);
 });
 
 // Criar um novo todo
